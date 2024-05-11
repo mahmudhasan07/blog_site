@@ -13,7 +13,7 @@ const Registration = () => {
         document.getElementById("registration-from").style.transform = "rotateY(180deg)"
     }
     return (
-        <div id='registration-from' className='border-2 bg-gray-400 w-1/3 p-2  my-auto absolute left-1/3 top-10'>
+        <div id='registration-from' className='border-2 bg-gray-400 w-1/3 p-2 h-[510px]  my-auto absolute left-1/3 top-10'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Registration for account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-2 '>
                 {/* register your input into the hook by invoking the "register" function */}

@@ -17,22 +17,22 @@ const Login = () => {
         loadCaptchaEnginge(6);
     }, []);
     return (
-        <div id='login-from' className='border-2 bg-gray-400 w-1/3 p-2 my-auto absolute left-1/3 top-10'>
+        <div id='login-from' className='border-2 bg-gray-400 w-1/3 h-[510px] p-2 my-auto absolute left-1/3 top-10'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Login in your account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-2 '>
                 {/* register your input into the hook by invoking the "register" function */}
-                <div className='border-2 w-9/12 mx-auto'>
+                <div className=' w-8/12 mx-auto'>
                     <label className='font-semibold text-lg'>Your Email</label> <br />
                     <input className='border-2 w-80 border-black p-1 rounded-xl' defaultValue="" {...register("email")} />
                 </div>
-                <div className='border-2 w-9/12 mx-auto'>
+                <div className=' w-8/12 mx-auto'>
                     <label className='font-semibold text-lg'>Your Captcha</label> <br />
                     <LoadCanvasTemplate></LoadCanvasTemplate>
                     <input className='border-2 w-80 border-black p-1 rounded-xl' defaultValue="" {...register("code")} />
                 </div>
 
                 {/* include validation with required or other standard HTML validation rules */}
-                <div className='border-2 w-9/12 mx-auto'>
+                <div className=' w-8/12 mx-auto'>
                     <label className='font-semibold text-lg'>Your Password</label> <br />
                     <input className='border-2 w-80 border-black p-1 rounded-xl' {...register("password", { required: true })} />
                 </div>
@@ -47,7 +47,7 @@ const Login = () => {
                 </div>
             </form>
             <div className='mx-auto my-2 w-fit'>
-                <button className='border text-xl font-semibold flex gap-2 p-1 rounded-xl'>LogIn with Google <FcGoogle className='text-2xl my-auto'></FcGoogle></button>
+                <button className='border text-xl font-semibold flex gap-2 p-2 rounded-xl'>LogIn with Google <FcGoogle className='text-2xl my-auto'></FcGoogle></button>
             </div>
 
         </div>
