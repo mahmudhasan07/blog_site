@@ -12,7 +12,7 @@ const Login = () => {
         document.getElementById("registration-from").style.rotate="0deg"
     }, []);
     return (
-        <div id='login-from' className='border-2 w-1/3 p-3 h-96 my-auto absolute left-1/3 top-10'>
+        <div id='login-from' className='border-2 bg-gray-400 w-1/3 p-3 h-96 my-auto absolute left-1/3 top-10'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Login in your account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-3 '>
                 {/* register your input into the hook by invoking the "register" function */}

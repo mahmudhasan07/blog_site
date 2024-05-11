@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import {  } from "./register.css";
 
 const Registration = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -10,8 +11,8 @@ const Registration = () => {
         document.getElementById("registration-from").style.rotate = "0deg"
     }, []);
     return (
-        <div id='login-from' className='border-2 w-1/3 p-3 h-96 my-auto absolute left-1/3 top-10'>
-            <h1 className='text-3xl font-bold text-center my-5'>Please Login in your account</h1>
+        <div id='registration-from' className='border-2 bg-gray-400 w-1/3 p-3 h-96 my-auto absolute left-1/3 top-10'>
+            <h1 className='text-3xl font-bold text-center my-5'>Please Registration for account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-3 '>
                 {/* register your input into the hook by invoking the "register" function */}
                 <div className='border-2 w-9/12 mx-auto'>
