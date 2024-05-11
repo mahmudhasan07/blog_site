@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./navbar";
+// import NavBar from "./navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,11 +12,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
+    <html lang="en" data-theme='light'>
       <link rel="icon" href="https://i.ibb.co/j81mpbn/exploresphere-high-resolution-logo-transparent.png"></link>
       <title>ExploreSphere</title>
       <body className={inter.className}>
         <NavBar></NavBar>
+
         {children}
       </body>
     </html>
