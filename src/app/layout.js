@@ -13,8 +13,13 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme='light'>
-      <link rel="icon" href="https://i.ibb.co/j81mpbn/exploresphere-high-resolution-logo-transparent.png"></link>
-      <title>ExploreSphere</title>
+      <head>
+        <title>ExploreSphere</title>
+        <link rel="icon" href="https://i.ibb.co/f9g36Zz/exploresphere-high-resolution-logo-transparent-1.png"></link>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet" />
+      </head>
       <body className={inter.className}>
         <NavBar></NavBar>
 

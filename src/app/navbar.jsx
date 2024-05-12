@@ -1,15 +1,16 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
+import "./navbar.css";
 
 export default function NavBar() {
     return (
-        <section className="flex justify-around border-b-2 border-black">
+        <section className="poetsen-one-regular flex justify-around border-b-2 border-black bg-[#622688]">
             <div>
-                <Link href={'/'}><Image src={'https://i.ibb.co/f9g36Zz/exploresphere-high-resolution-logo-transparent-1.png'} width={200} height={10} className=" my-2"></Image></Link>
+                <Link href={'/'}><Image src={'https://i.ibb.co/f9g36Zz/exploresphere-high-resolution-logo-transparent-1.png'} width={200} height={10} className=" my-2 "></Image></Link>
             </div>
             <div className=" my-auto">
-                <ul className="flex gap-8 text-lg font-semibold">
+                <ul className=" flex gap-8 text-white text-xl ">
                     <Link href={'/'}>
                         <li>Home</li>
                     </Link>
