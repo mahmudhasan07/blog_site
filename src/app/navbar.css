@@ -3,3 +3,12 @@
     /* font-weight: 400; */
     font-style: normal;
   }
+
+
+  #button{
+    border: 1px solid;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #df3a8f,#df3a8f, #7757ea, #7757ea );
+
+  }
