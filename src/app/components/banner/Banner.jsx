@@ -27,8 +27,8 @@ const Banner = () => {
                 navigation
                 loop={true}
                 speed={1500}               
-                // autoplay={{delay : 3500}}
-                pagination={{ clickable: true }}
+                autoplay={{delay : 3000}}
+                // pagination={{ clickable: true }}
                 modules={[EffectCreative, Navigation, Pagination, Autoplay]}
                 className="mySwiper2 w-11/12 "
             >
