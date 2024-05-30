@@ -17,7 +17,7 @@ const Login = () => {
         loadCaptchaEnginge(6);
     }, []);
     return (
-        <div id='login-from' className='border-2 bg-gray-400 w-1/3 h-[510px] p-2 my-auto absolute left-1/3 top-10'>
+        <div id='login-from' className='border-2 rounded-2xl backdrop-blur-sm backdrop-brightness-90 w-1/3 h-[510px] p-2 my-auto absolute left-1/3 top-14'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Login in your account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-2 '>
                 {/* register your input into the hook by invoking the "register" function */}
@@ -47,7 +47,7 @@ const Login = () => {
                 </div>
             </form>
             <div className='mx-auto my-2 w-fit'>
-                <button className='border text-xl font-semibold flex gap-2 p-2 rounded-xl'>LogIn with Google <FcGoogle className='text-2xl my-auto'></FcGoogle></button>
+                <button className='border text-xl font-semibold backdrop-blur-2xl text-white flex gap-2 p-2 rounded-xl'>LogIn with Google <FcGoogle className='text-2xl my-auto'></FcGoogle></button>
             </div>
 
         </div>

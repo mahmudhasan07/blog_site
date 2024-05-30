@@ -11,6 +11,7 @@ $color2 : #6508c3;
 #div1>p {
     display: none;
     position: absolute;
+    cursor: pointer;
 }
 #div1:hover >p {
     position: absolute;
@@ -18,5 +19,5 @@ $color2 : #6508c3;
 }
 
 #div1:hover > img {
-    opacity: 0.35;
+    opacity: 0.25;
 }
