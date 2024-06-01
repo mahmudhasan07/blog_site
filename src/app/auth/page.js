@@ -1,6 +1,10 @@
 import Login from "./Login";
 import Registration from "./Registration";
 
+const metadata = {
+    title : "LogIn"
+}
+
 export default function Page() {
     return (
         <section className="relative">
