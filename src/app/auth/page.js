@@ -5,7 +5,7 @@ const metadata = {
     title : "LogIn"
 }
 
-export default function Page() {
+export default function Authorization() {
     return (
         <section className="relative">
             <div className="bg-black text-black">
