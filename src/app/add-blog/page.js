@@ -19,19 +19,16 @@ export async function generateMetadata() {
 //     description: "Explore world with lot of memories",
 // };
 
-export default function AddBlog({params}) {
-    const headerList = headers();
-    const domain = headerList.get("referer")
-    const pathName = domain.split("/")
-    console.log(pathName[3]);
-
-    // const fullUrl = headerList.get('referer') ;
-    // console.log(params);
+export default function AddBlog({}) {
+    // const headerList = headers();
+    // const domain = headerList.get("referer")
+    // const pathName = domain.split("/")
+    // console.log(pathName[3]);
     
     return (
         <section>
             <h1 className="text-4xl font-bold text-center my-10">Add Your Blog Post</h1>
-            <ServerComponent></ServerComponent>
+            {/* <ServerComponent></ServerComponent> */}
         </section>
     );
 }
