@@ -27,8 +27,31 @@ export default function AddBlog({}) {
     
     return (
         <section>
-            <h1 className="text-4xl font-bold text-center my-10">Add Your Blog Post</h1>
-            {/* <ServerComponent></ServerComponent> */}
+                <div>
+            <h1 className="text-4xl font-bold text-center mt-5 mb-3">Add Your Blog Post</h1>
+            <form className="border-2 p-2 space-y-3 rounded-2xl w-1/3 mx-auto">
+                <div>
+                    <label className="text-lg font-semibold">Blog Name</label> <br/>
+                    <input className="border-2 w-full border-black p-2 rounded-2xl "></input>
+                </div>
+                <div>
+                    <label className="text-lg font-semibold">Blog Location</label> <br/>
+                    <input className="border-2 w-full border-black p-2 rounded-2xl "></input>
+                </div>
+                <div>
+                    <label className="text-lg font-semibold">Upload Your Photos</label>
+                    <input type="file"></input>
+                </div>
+                <div>
+                <label className="text-lg font-semibold">Preview Your Photos</label>
+                <p className="text-[#6f53d6] font-semibold">No Image Preview</p>
+                </div>
+                <div>
+                <label className="text-lg font-semibold">Blog Description</label>
+                <textarea className="border-2 w-full border-black p-2 rounded-2xl " rows={'7'}></textarea>
+                </div>
+            </form>
+                </div>
         </section>
     );
 }
