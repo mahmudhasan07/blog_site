@@ -16,7 +16,7 @@ const Blog = () => {
     }
     // console.log(previewImage);
     return (
-        <form className="border-2 p-2 space-y-3 rounded-2xl w-1/3 mx-auto">
+        <form className="border-2 p-2 space-y-3 rounded-2xl w-1/3 my-5 mx-auto">
             <div>
                 <label className="text-lg font-semibold">Blog Name</label> <br />
                 <input className="border-2 w-full border-black p-2 rounded-2xl "></input>
@@ -45,7 +45,7 @@ const Blog = () => {
                 <textarea className="border-2 w-full border-black p-2 rounded-2xl " rows={'7'}></textarea>
             </div>
             <div className='mx-auto w-fit'>
-                <button id='button' className='border-2 p-2 text-white mt-3 border-white text-lg rounded-2xl font-semibold'>Submit Your Blog</button>
+                <button  id='button_Submit' className=' border-2 p-2 text-white mt-3 border-white text-lg rounded-2xl font-semibold'>Submit Your Blog</button>
             </div>
         </form>
     );
