@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Banner from "./components/banner/Banner";
 import Lifestyle from "./components/lifestyle/Lifestyle";
+import Support from "./components/Contact/Support";
 
 export const metadata = {
   title: "ExploreSphere",
@@ -15,6 +16,7 @@ export default function Home() {
       </div>
       <Banner></Banner>
       <Lifestyle></Lifestyle>
+      <Support></Support>
     </>
   );
 }
