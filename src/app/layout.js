@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./navbar";
+import TankStackQuery from "./Hooks/TankStackQuery";
+
 // import NavBar from "./navbar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,8 +21,10 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <NavBar></NavBar>
-
+        <TankStackQuery>
         {children}
+        </TankStackQuery>
+
       </body>
     </html>
   );

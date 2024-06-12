@@ -12,7 +12,12 @@ export const metadata = {
 
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        // console.log(data);
+        if(validateCaptcha(data?.code)==true){
+            console.log("condition");
+        }
+    };
     const handleLogin = () => {
         document.getElementById("login-from").style.transform = "rotateY(180deg)"
         document.getElementById("registration-from").style.transform = "rotateY(0deg)"
@@ -38,7 +43,7 @@ const Login = () => {
                 {/* include validation with required or other standard HTML validation rules */}
                 <div className=' w-8/12 mx-auto'>
                     <label className='font-semibold text-lg'>Your Password</label> <br />
-                    <input className='border-2 w-80 border-black p-1 rounded-xl' {...register("password", { required: true })} />
+                    <input className='border-2 w-80 border-black p-1 rounded-xl' type='password' {...register("password", { required: true })} />
                 </div>
                 {/* errors will return when field validation fails  */}
                 {errors.exampleRequired && <span>This field is required</span>}
