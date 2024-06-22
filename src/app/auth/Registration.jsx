@@ -3,10 +3,15 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { } from "./register.css";
 import { FcGoogle } from 'react-icons/fc';
+import useAuth from './useAuth';
 
 const Registration = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        console.log(data)
+
+        useAuth.signUp()
+    };
     const handleRegister = () => {
 
         document.getElementById("login-from").style.transform = "rotateY(0deg)"
