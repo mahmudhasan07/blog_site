@@ -1,21 +1,47 @@
 'use client'
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import React, { useEffect } from 'react';
 // import { useForm } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import useAuth from './useAuth';
 
 
 export const metadata = {
-    title : "LogIn"
+    title: "LogIn"
 }
+
+
+
+
 
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        // console.log(data);
-        if(validateCaptcha(data?.code)==true){
-            console.log("condition");
+        if (validateCaptcha(data?.code) == true) {
+            console.log(data);
+            // console.log("condition");
+            const user = new CognitoUser({
+                Pool: useAuth,
+                Username : data?.email
+            })
+
+            const userDetails = new AuthenticationDetails({
+                Username: data?.email,
+                Password: data?.password
+            })
+
+            user.authenticateUser(userDetails, {
+                onSuccess : (result)=>{
+                    console.log(result);
+                },
+                onFailure : (err)=>{
+                    console.log(err);
+                }
+            })
+
+
         }
     };
     const handleLogin = () => {
@@ -24,7 +50,14 @@ const Login = () => {
     }
     useEffect(() => {
         loadCaptchaEnginge(6);
+        const getUser =useAuth.getCurrentUser()
+        console.log(getUser);
     }, []);
+
+    const handleLogOut = ()=>{
+    const user =  useAuth.getCurrentUser()
+    user.signOut()
+    }
     return (
         <div id='login-from' className='border-2 rounded-2xl backdrop-blur-sm backdrop-brightness-90 w-1/3 h-[510px] p-2 my-auto absolute left-1/3 top-14'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Login in your account</h1>
@@ -56,7 +89,7 @@ const Login = () => {
                 </div>
             </form>
             <div className='mx-auto my-2 w-fit'>
-                <button className='border text-xl font-semibold backdrop-blur-2xl text-white flex gap-2 p-2 rounded-xl'>LogIn with Google <FcGoogle className='text-2xl my-auto'></FcGoogle></button>
+                <button onClick={handleLogOut} className='border text-xl font-semibold backdrop-blur-2xl text-white flex gap-2 p-2 rounded-xl'>LogIn with Google <FcGoogle className='text-2xl my-auto'></FcGoogle></button>
             </div>
 
         </div>

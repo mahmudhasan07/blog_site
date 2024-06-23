@@ -22,8 +22,8 @@ const Registration = () => {
                 Value: data?.name
             }),
             new CognitoUserAttribute({
-                Name : "email",
-                Value : data?.email
+                Name: "email",
+                Value: data?.email
             })
         ]
 
@@ -49,6 +49,19 @@ const Registration = () => {
         document.getElementById("login-from").style.transform = "rotateY(0deg)"
         document.getElementById("registration-from").style.transform = "rotateY(180deg)"
     }
+
+
+    const user = useAuth.getCurrentUser()
+    if (user) {
+        user.getSession((err, res) => {
+            if (err) {
+                console.log(err);
+            }
+            console.log(res);
+        })
+    }
+    console.log(user);
+    // console.log(userAtttributes);
 
     return (
         <div id='registration-from' className='border-2 rounded-2xl backdrop-blur-md backdrop-brightness-90 w-1/3 p-2 h-[510px]  my-auto absolute left-1/3 top-14'>
