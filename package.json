@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
     "@tanstack/react-query": "^5.45.0",
     "amazon-cognito-identity-js": "^6.3.12",
     "axios": "^1.7.2",
