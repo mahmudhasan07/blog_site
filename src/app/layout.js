@@ -1,11 +1,7 @@
-import { Inter } from "next/font/google";
+
 import "./globals.css";
 import NavBar from "./navbar";
 import TankStackQuery from "./Hooks/TankStackQuery";
-
-// import NavBar from "./navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 
 
@@ -19,7 +15,7 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
       </head>
-      <body className={inter.className}>
+      <body>
         <NavBar></NavBar>
         <TankStackQuery>
         {children}

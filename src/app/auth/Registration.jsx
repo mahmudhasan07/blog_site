@@ -4,19 +4,52 @@ import { useForm } from 'react-hook-form';
 import { } from "./register.css";
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from './useAuth';
+import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { Result } from 'postcss';
 
 const Registration = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
 
-        useAuth.signUp()
+        const Attributes = [
+            new CognitoUserAttribute({
+                Name: "picture",
+                Value: "https://i.ibb.co/Kq5Hpzm/IMG-20231205-02182322.jpg"
+            }),
+            new CognitoUserAttribute({
+                Name: "name",
+                Value: data?.name
+            }),
+            new CognitoUserAttribute({
+                Name : "email",
+                Value : data?.email
+            })
+        ]
+
+        const email = data?.email
+        const name = data?.name
+        const password = data?.password
+        if (email && password) {
+            useAuth.signUp(email, password, Attributes, null, (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result);
+                }
+            })
+
+
+        }
+
     };
     const handleRegister = () => {
 
         document.getElementById("login-from").style.transform = "rotateY(0deg)"
         document.getElementById("registration-from").style.transform = "rotateY(180deg)"
     }
+
     return (
         <div id='registration-from' className='border-2 rounded-2xl backdrop-blur-md backdrop-brightness-90 w-1/3 p-2 h-[510px]  my-auto absolute left-1/3 top-14'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Registration for account</h1>
