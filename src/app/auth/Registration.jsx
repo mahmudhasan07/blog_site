@@ -60,7 +60,7 @@ const Registration = () => {
             console.log(res);
         })
     }
-    console.log(user);
+    // console.log(user);
     // console.log(userAtttributes);
 
     return (
