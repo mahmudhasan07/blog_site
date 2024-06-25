@@ -3,7 +3,7 @@ import axios from 'axios';
 import useAxios, { AxiosSource } from './useAxios';
 
 const useFetch1 = (data1,data2) => {
-    console.log(data1,data2);
+    // console.log(data1,data2);
     const axiosLink = useAxios(AxiosSource)
     const { isLoading, isError, data, error, refetch } = useQuery({
         queryKey: [data1,data2],

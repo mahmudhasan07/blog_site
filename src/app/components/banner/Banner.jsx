@@ -11,7 +11,8 @@ import useFetch1 from '@/app/Hooks/useFetch1';
 
 const Banner = () => {
     const [data] = useFetch1("watches")
-    console.log(data);
+    // console.log(data);
+    console.log(process.env.NEXT_CLIENT, process.env.NEXT_ID);
     return (
         <section className='my-3'>
             <Swiper

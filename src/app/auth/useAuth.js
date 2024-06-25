@@ -6,6 +6,6 @@ const authData = {
     ClientId: process.env.client,
 }
 
-console.log(process.env.NEXT_CLIENT, process.env.NEXT_ID);
+
 
 export default new CognitoUserPool(authData)
