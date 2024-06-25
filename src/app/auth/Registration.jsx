@@ -37,6 +37,7 @@ const Registration = () => {
                 }
                 else {
                     console.log(result);
+                    result.userConfirmed(true)
                 }
             })
 
