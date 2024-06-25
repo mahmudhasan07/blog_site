@@ -15,7 +15,7 @@ export const metadata = {
 export default function Home() {
   // const [data, refetch] = useFetch1()
   // console.log(data);
-  // console.log(process.env.UserPoolId);
+  
   return (
     <>
       <div>
