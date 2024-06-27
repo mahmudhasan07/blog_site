@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { } from "./register.css";
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from './useAuth';
-import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { Result } from 'postcss';
 
 const Registration = () => {
@@ -37,7 +37,17 @@ const Registration = () => {
                 }
                 else {
                     console.log(result);
-                    result.userConfirmed(true)
+                    const user = new CognitoUser({
+                        Pool: useAuth,
+                        Username: data?.email
+                    })
+
+                    user.confirmRegistration(null, true, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        console.log(res);
+                    })
                 }
             })
 
