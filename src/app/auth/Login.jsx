@@ -51,7 +51,7 @@ const Login = () => {
     useEffect(() => {
         loadCaptchaEnginge(6);
         const getUser =useAuth.getCurrentUser()
-        console.log(getUser);
+        // console.log(getUser);
     }, []);
 
     const handleLogOut = ()=>{
