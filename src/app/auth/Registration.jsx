@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { } from "./register.css";
 import { FcGoogle } from 'react-icons/fc';
@@ -9,7 +9,8 @@ import { Result } from 'postcss';
 
 const Registration = () => {
     const [Email, setEmail] = useState("");
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(true);
+    const  confirmCode = useRef("")
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -32,21 +33,22 @@ const Registration = () => {
         const email = data?.email
         const name = data?.name
         const password = data?.password
-        if (email && password) {
-            useAuth.signUp(email, password, Attributes, null, (err, result) => {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    console.log(result);
-                    setEmail(data?.email)
+
+        setModal(true)
+        console.log(modal);
+        // if (email && password) {
+        //     useAuth.signUp(email, password, Attributes, null, (err, result) => {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //         else {
+        //             console.log(result);
+        //             setEmail(data?.email)
 
 
-                }
-            })
-
-
-        }
+        //         }
+        //     })
+        // }
 
     };
     const handleRegister = () => {
@@ -69,38 +71,26 @@ const Registration = () => {
     // console.log(userAtttributes);
 
     const handleConfirmRegistration = () => {
-
+        console.log(Email);
         // var cognitoUser = new CognitoUser(userData);
+        const code = confirmCode.current
+        console.log(code);
         const users = new CognitoUser({
             Pool: useAuth,
             Username: Email
         })
-        users.confirmRegistration("136103", true, (err, res) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log(res);
-        })
+        // users.confirmRegistration("136103", true, (err, res) => {
+        //     if (err) {
+        //         console.log(err);
+        //     }
+        //     console.log(res);
+        // })
     }
 
-    console.log(Email);
+    
 
     return (
         <section>
-            {
-                modal == true ?
-                    <div className='bg-transparent backdrop-blur-sm w-full absolute h-screen top-0'>
-                        <div className='text-lg font-semibold relative w-1/3 mx-auto p-2 rounded-2xl top-1/3 bg-white'>
-                            <div className='flex justify-end'>
-                                <button onClick={setModal(false)}>X</button>
-                            </div>
-                            <p>Please check your email address to verify email.</p>
-                            <input type="number" className='border-2 rounded-2xl p-1 border-b' />
-                        </div>
-                    </div>
-                    :
-                    ""
-            }
             <div id='registration-from' className='border-2 rounded-2xl backdrop-blur-md backdrop-brightness-90 w-1/3 p-2 h-[510px]  my-auto absolute left-1/3 top-14'>
 
                 <h1 className='text-3xl font-bold text-center my-5'>Please Registration for account</h1>
@@ -133,11 +123,22 @@ const Registration = () => {
                         <input className='btn' type="submit" />
                     </div>
                 </form>
-
-                <div>
-                    <button onClick={handleConfirmRegistration} className='btn'> Confirm Registration </button>
-                </div>
             </div>
+            {
+                modal == true ?
+                    <div className='bg-transparent backdrop-blur-sm w-full hero-overlay absolute h-screen top-0'>
+                        <div className='text-lg font-semibold relative space-y-1 w-1/3 text-center mx-auto p-5 rounded-2xl top-1/3 bg-white'>
+                            <div className='flex justify-end'>
+                                <button onClick={()=>setModal(false)}>X</button>
+                            </div>
+                            <p className=''>Please check your email address to verify email.</p>
+                            <input ref={confirmCode}  type="text" className='border-2 mr-5 rounded-2xl p-1 border-b' />
+                            <button className='btn btn-sm'>Confirm Code</button>
+                        </div>
+                    </div>
+                    :
+                    ""
+            }
         </section>
     );
 };
