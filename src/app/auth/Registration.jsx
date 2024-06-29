@@ -10,7 +10,7 @@ import { Result } from 'postcss';
 const Registration = () => {
     const [Email, setEmail] = useState("");
     const [modal, setModal] = useState(true);
-    const  confirmCode = useRef("")
+    const  confirmCode = useRef()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -70,21 +70,22 @@ const Registration = () => {
     // console.log(user);
     // console.log(userAtttributes);
 
-    const handleConfirmRegistration = () => {
-        console.log(Email);
+    const handleConfirmRegistration = (e) => {
+        // console.log(Email);
+        e.preventDefault()
         // var cognitoUser = new CognitoUser(userData);
-        const code = confirmCode.current
-        console.log(code);
+        const code = confirmCode.current.value
+        console.log(typeof(code));
         const users = new CognitoUser({
             Pool: useAuth,
             Username: Email
         })
-        // users.confirmRegistration("136103", true, (err, res) => {
-        //     if (err) {
-        //         console.log(err);
-        //     }
-        //     console.log(res);
-        // })
+        users.confirmRegistration("136103", true, (err, res) => {
+            if (err) {
+                console.log(err);
+            }
+            console.log(res);
+        })
     }
 
     
@@ -132,8 +133,8 @@ const Registration = () => {
                                 <button onClick={()=>setModal(false)}>X</button>
                             </div>
                             <p className=''>Please check your email address to verify email.</p>
-                            <input ref={confirmCode}  type="text" className='border-2 mr-5 rounded-2xl p-1 border-b' />
-                            <button className='btn btn-sm'>Confirm Code</button>
+                            <input ref={confirmCode}   type="text" className='border-2 mr-5 rounded-2xl p-1 border-b' />
+                            <button onClick={handleConfirmRegistration} className='btn btn-sm'>Confirm Code</button>
                         </div>
                     </div>
                     :
