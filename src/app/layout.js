@@ -2,6 +2,7 @@
 import "./globals.css";
 import NavBar from "./navbar";
 import TankStackQuery from "./Hooks/TankStackQuery";
+import ContextAPI from "./ContextAPI/ContextAPI";
 
 
 
@@ -18,7 +19,9 @@ export default function RootLayout({ children }) {
       <body>
         <NavBar></NavBar>
         <TankStackQuery>
-        {children}
+          <ContextAPI>
+            {children}
+          </ContextAPI>
         </TankStackQuery>
 
       </body>

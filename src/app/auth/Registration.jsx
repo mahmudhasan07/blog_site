@@ -5,12 +5,12 @@ import { } from "./register.css";
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from './useAuth';
 import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
-import { Result } from 'postcss';
+import Swal from 'sweetalert2'
 
 const Registration = () => {
     const [Email, setEmail] = useState("");
-    const [modal, setModal] = useState(true);
-    const  confirmCode = useRef()
+    const [modal, setModal] = useState(false);
+    const confirmCode = useRef()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -18,7 +18,7 @@ const Registration = () => {
         const Attributes = [
             new CognitoUserAttribute({
                 Name: "picture",
-                Value: "https://i.ibb.co/Kq5Hpzm/IMG-20231205-02182322.jpg"
+                Value: "https://i.ibb.co/c64L2sJ/432044893-1400818297981947-8508382469092611163-n.jpg"
             }),
             new CognitoUserAttribute({
                 Name: "name",
@@ -34,21 +34,22 @@ const Registration = () => {
         const name = data?.name
         const password = data?.password
 
-        setModal(true)
-        console.log(modal);
-        // if (email && password) {
-        //     useAuth.signUp(email, password, Attributes, null, (err, result) => {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //         else {
-        //             console.log(result);
-        //             setEmail(data?.email)
+
+        // console.log(modal);
+        if (email && password) {
+            useAuth.signUp(email, password, Attributes, null, (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result);
+                    setEmail(data?.email)
+                    setModal(true)
 
 
-        //         }
-        //     })
-        // }
+                }
+            })
+        }
 
     };
     const handleRegister = () => {
@@ -71,24 +72,31 @@ const Registration = () => {
     // console.log(userAtttributes);
 
     const handleConfirmRegistration = (e) => {
-        // console.log(Email);
+        console.log(Email);
         e.preventDefault()
         // var cognitoUser = new CognitoUser(userData);
         const code = confirmCode.current.value
-        console.log(typeof(code));
+        console.log(typeof (code));
         const users = new CognitoUser({
             Pool: useAuth,
             Username: Email
         })
-        users.confirmRegistration("136103", true, (err, res) => {
+        users.confirmRegistration(code, true, (err, res) => {
             if (err) {
                 console.log(err);
             }
-            console.log(res);
+            if (res) {
+                Swal.fire({
+                    title: "Registration Complete",
+                    text: "You successfully registration your account",
+                    icon: "success"
+                });
+                setModal(false)
+            }
         })
     }
 
-    
+
 
     return (
         <section>
@@ -130,10 +138,10 @@ const Registration = () => {
                     <div className='bg-transparent backdrop-blur-sm w-full hero-overlay absolute h-screen top-0'>
                         <div className='text-lg font-semibold relative space-y-1 w-1/3 text-center mx-auto p-5 rounded-2xl top-1/3 bg-white'>
                             <div className='flex justify-end'>
-                                <button onClick={()=>setModal(false)}>X</button>
+                                <button onClick={() => setModal(false)}>X</button>
                             </div>
                             <p className=''>Please check your email address to verify email.</p>
-                            <input ref={confirmCode}   type="text" className='border-2 mr-5 rounded-2xl p-1 border-b' />
+                            <input ref={confirmCode} type="text" className='border-2 mr-5 rounded-2xl p-1 border-b' />
                             <button onClick={handleConfirmRegistration} className='btn btn-sm'>Confirm Code</button>
                         </div>
                     </div>

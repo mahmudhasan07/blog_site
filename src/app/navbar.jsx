@@ -2,8 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import "./navbar.css";
+import { useContext } from "react";
+import { ContextSource } from "./ContextAPI/ContextAPI";
 
 export default function NavBar() {
+    const {user} = useContext(ContextSource)
+    console.log(user);
     return (
         <section className="poetsen-one-regular text-white flex justify-around border-b-2 border-black bg-[#65248e]">
             <div>
