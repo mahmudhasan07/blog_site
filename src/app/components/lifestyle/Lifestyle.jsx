@@ -3,8 +3,8 @@ import React from 'react';
 import  "./Lifestyle.scss";
 const Lifestyle = () => {
     return (
-        <section className='my-10 space-y-5'>
-            <div id='title' className='text-center'>
+        <section id='title' className='my-10 space-y-5'>
+            <div  className='text-center'>
                 <h1 className='text-5xl font-extrabold my-2'>Categories Of Travel </h1>
                 <p className='text-xl font-semibold'>Explore World with Us</p>
             </div>

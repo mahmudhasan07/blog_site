@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { ContextSource } from "./ContextAPI/ContextAPI";
 
 export default function NavBar() {
-    const data = useContext(ContextSource)
-    console.log(data);
+    const {user} = useContext(ContextSource)
+    console.log(user);
     return (
         <section className="poetsen-one-regular text-white flex justify-around border-b-2 border-black bg-[#65248e]">
             <div>
@@ -30,7 +30,15 @@ export default function NavBar() {
                 </ul>
             </div>
             <div className="my-auto">
-                <Link href={'/auth'}><button id="button" className=" text-xl font-semibold">Login</button></Link>
+                {
+                    user ?
+                    <div className="flex gap-3">
+                        <img src={user?.picture} className="w-12 h-12 rounded-full object-cover" alt="" />
+                        <Link href={'/'}><button id="button" className=" mt-1 text-base font-semibold">LogOut</button></Link>
+                    </div>
+                    :
+                    <Link href={'/auth'}><button id="button" className=" text-xl font-semibold">Login</button></Link>
+                }
             </div>
         </section>
     );

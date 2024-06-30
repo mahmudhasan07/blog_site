@@ -4,7 +4,7 @@ import useAuth from '../auth/useAuth';
 
 export const ContextSource = createContext()
 const ContextAPI = ({ children }) => {
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState();
     useEffect(() => {
         const userDetails = useAuth.getCurrentUser()
         if (userDetails) {
@@ -13,13 +13,14 @@ const ContextAPI = ({ children }) => {
                     console.log(err);
                 }
                 else {
-                    setUser([res?.idToken?.payload])
+                    setUser(res?.idToken?.payload)
+                    console.log(res?.idToken?.payload);
                 }
             })
         }
     }, []);
     // console.log(user);
-    const data = "hello"
+    const data = {user}
     return <ContextSource.Provider value={data}>
         {children} </ContextSource.Provider>
 };
