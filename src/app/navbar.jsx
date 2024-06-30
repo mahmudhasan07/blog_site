@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { ContextSource } from "./ContextAPI/ContextAPI";
 
 export default function NavBar() {
-    const {user} = useContext(ContextSource)
-    console.log(user);
+    const data = useContext(ContextSource)
+    console.log(data);
     return (
         <section className="poetsen-one-regular text-white flex justify-around border-b-2 border-black bg-[#65248e]">
             <div>

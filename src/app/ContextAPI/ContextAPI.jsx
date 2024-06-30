@@ -19,8 +19,9 @@ const ContextAPI = ({ children }) => {
         }
     }, []);
     // console.log(user);
-    const data = {user}
-    return <ContextSource.Provider value={data}> {children} </ContextSource.Provider>
+    const data = "hello"
+    return <ContextSource.Provider value={data}>
+        {children} </ContextSource.Provider>
 };
 
 export default ContextAPI;

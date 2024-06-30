@@ -18,11 +18,11 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <NavBar></NavBar>
-        <TankStackQuery>
-          <ContextAPI>
+        <ContextAPI>
+          <TankStackQuery>
             {children}
-          </ContextAPI>
-        </TankStackQuery>
+          </TankStackQuery>
+        </ContextAPI>
 
       </body>
     </html>
