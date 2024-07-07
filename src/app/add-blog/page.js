@@ -29,8 +29,8 @@ export default function AddBlog({}) {
     
     
     return (
-        <section>
-            <h1 className="text-4xl font-bold text-center mt-5 mb-3">Add Your Blog Post</h1>
+        <section className="bg-[#c0b2f3]">
+            <h1 className="text-4xl font-bold text-center pt-5 mb-3">Add Your Blog Post</h1>
             <Blog></Blog>
         </section>
     );

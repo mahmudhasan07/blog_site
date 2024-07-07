@@ -3,20 +3,25 @@ import React, { useState } from 'react';
 import {} from "./Blog.css"
 
 const Blog = () => {
-    const [previewImage, setpreviewImage] = useState([]);
+    const [previewImage, setPreviewImage] = useState([]);
 
     const handleImage = (e) => {
         e.preventDefault()
         const file = e.target.files
         const ImageArray = Array.from(file)
         const preview = ImageArray.map(element => URL.createObjectURL(element))
+        const hostImage = ImageArray.map(e=> {
+            const fromData = new FormData()
+            fromData.append("files", e)
+            fromData.append("us")
+        })
         // console.log(preview);
-        setpreviewImage(data => data.concat(preview))
+        setPreviewImage(data => data.concat(preview))
 
     }
     // console.log(previewImage);
     return (
-        <form className="border-2 p-2 space-y-3 rounded-2xl w-1/3 my-5 mx-auto">
+        <form className="border-2 p-5 space-y-3 bg-white rounded-2xl w-1/3 mx-auto">
             <div>
                 <label className="text-lg font-semibold">Blog Name</label> <br />
                 <input className="border-2 w-full border-black p-2 rounded-2xl "></input>
@@ -34,7 +39,7 @@ const Blog = () => {
                 <div className='flex gap-3'>
                 {
                     previewImage.length > 0 ?
-                        previewImage.map((element, idx) => <img key={idx} src={element} className='w-20'></img>)
+                        previewImage.map((element, idx) => <img key={idx} src={element} className='w-20 h-20 object-cover'></img>)
                         :
                         <p className="text-[#6f53d6] font-semibold">No Image Preview</p>
                 }
