@@ -18,8 +18,9 @@ const Blog = () => {
             fromData.append("upload_preset", 'blog_images')
             axios.post('https://api.cloudinary.com/v1_1/daudgshta/upload', fromData)
                 .then(res => {
-                    console.log(res);
-                    sethostImages(e => e.concat(res))
+                    console.log(res.data.url);
+                    sethostImages(e => e.concat(res.data.url))
+                    
                 })
                 .catch(err => {
                     console.log(err);
@@ -27,9 +28,10 @@ const Blog = () => {
         })
         // console.log(preview);
         setPreviewImage(data => data.concat(preview))
-        console.log(hostImages);
+        
 
     }
+    console.log(hostImages);
     // console.log(previewImage);
     return (
         <form className="border-2 p-5 space-y-3 bg-white rounded-2xl w-1/3 mx-auto">
