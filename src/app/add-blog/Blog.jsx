@@ -1,9 +1,12 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { } from "./Blog.css"
 import axios from 'axios';
+import { ContextSource } from '../ContextAPI/ContextAPI';
 
 const Blog = () => {
+    const {user} = useContext(ContextSource)
+    console.log(user);
     const [previewImage, setPreviewImage] = useState([]);
     const [hostImages, sethostImages] = useState([]);
 
@@ -26,22 +29,30 @@ const Blog = () => {
                     console.log(err);
                 })
         })
-        // console.log(preview);
         setPreviewImage(data => data.concat(preview))
         
 
     }
-    console.log(hostImages);
-    // console.log(previewImage);
+    const handleFrom = (e)=>{
+        e.preventDefault()
+        const data = e.target
+        const name = data.name.value
+        const location = data.location.value
+        const details = data.details.value
+        const email = user?.email
+        const blogDetails = {name,location,details, email, hostImages}
+        console.log(blogDetails);
+
+    }
     return (
-        <form className="border-2 p-5 space-y-3 bg-white rounded-2xl w-1/3 mx-auto">
+        <form onSubmit={handleFrom} className="border-2 p-5 space-y-3 bg-white rounded-2xl w-1/3 mx-auto">
             <div>
                 <label className="text-lg font-semibold">Blog Name</label> <br />
-                <input className="border-2 w-full border-black p-2 rounded-2xl "></input>
+                <input name='name' className="border-2 w-full border-black p-2 rounded-2xl "></input>
             </div>
             <div>
                 <label className="text-lg font-semibold">Blog Location</label> <br />
-                <input className="border-2 w-full border-black p-2 rounded-2xl "></input>
+                <input name='location' className="border-2 w-full border-black p-2 rounded-2xl "></input>
             </div>
             <div>
                 <label className="text-lg font-semibold">Upload Your Photos</label>
@@ -60,7 +71,7 @@ const Blog = () => {
             </div>
             <div>
                 <label className="text-lg font-semibold">Blog Description</label>
-                <textarea className="border-2 w-full border-black p-2 rounded-2xl " rows={'7'}></textarea>
+                <textarea name='details' className="border-2 w-full border-black p-2 rounded-2xl " rows={'7'}></textarea>
             </div>
             <div className='mx-auto w-fit'>
                 <button id='button_Submit' className=' border-2 p-2 text-white mt-3 border-white text-lg rounded-2xl font-semibold'>Submit Your Blog</button>

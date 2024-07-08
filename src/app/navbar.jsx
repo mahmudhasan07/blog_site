@@ -7,7 +7,7 @@ import { ContextSource } from "./ContextAPI/ContextAPI";
 
 export default function NavBar() {
     const {user} = useContext(ContextSource)
-    console.log(user);
+    // console.log(user);
     return (
         <section className="poetsen-one-regular text-white flex justify-around border-b-2 border-black bg-[#65248e]">
             <div>
