@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import useAuth from './useAuth';
+import { useRouter } from 'next/navigation';
 
 
 export const metadata = {
@@ -17,6 +18,7 @@ export const metadata = {
 
 
 const Login = () => {
+    const navigate = useRouter()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         if (validateCaptcha(data?.code) == true) {
@@ -35,6 +37,7 @@ const Login = () => {
             user.authenticateUser(userDetails, {
                 onSuccess : (result)=>{
                     console.log(result);
+                    navigate.push("/")
                 },
                 onFailure : (err)=>{
                     console.log(err);

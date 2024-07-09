@@ -3,19 +3,38 @@ import React, { useContext, useState } from 'react';
 import { } from "./Blog.css"
 import axios from 'axios';
 import { ContextSource } from '../ContextAPI/ContextAPI';
+import useAxios, { AxiosSource } from '../Hooks/useAxios';
 
 const Blog = () => {
-    const {user} = useContext(ContextSource)
-    console.log(user);
+    const { user } = useContext(ContextSource)
+    const axiosLink = useAxios(AxiosSource)
+    // console.log(user);
     const [previewImage, setPreviewImage] = useState([]);
     const [hostImages, sethostImages] = useState([]);
+    const [imageArray, setImageArray] = useState([]);
+
 
     const handleImage = (e) => {
         e.preventDefault()
         const file = e.target.files
-        const ImageArray = Array.from(file)
-        const preview = ImageArray.map(element => URL.createObjectURL(element))
-        ImageArray.map(e => {
+        const images = Array.from(file)
+        const preview = images.map(element => {
+            URL.createObjectURL(element)
+            setImageArray(images)
+        })
+
+        setPreviewImage(data => data.concat(preview))
+
+
+    }
+    const handleFrom = (e) => {
+        e.preventDefault()
+        const data = e.target
+        const name = data.name.value
+        const location = data.location.value
+        const details = data.details.value
+        const email = user?.email
+        imageArray.map(e => {
             const fromData = new FormData()
             fromData.append("file", e)
             fromData.append("upload_preset", 'blog_images')
@@ -23,27 +42,49 @@ const Blog = () => {
                 .then(res => {
                     console.log(res.data.url);
                     sethostImages(e => e.concat(res.data.url))
-                    
+                    if (imageArray?.length === hostImages?.length) {
+                        const blogDetails = { name, location, details, email, hostImages }
+                        console.log(blogDetails);
+                        axiosLink.post("/blogs", blogDetails)
+                        .then(res=>{
+                            console.log(res.data);
+                        })
+                        .catch(err=>{
+                            console.log(err);
+                        })
+                    }
+
                 })
                 .catch(err => {
                     console.log(err);
                 })
         })
-        setPreviewImage(data => data.concat(preview))
-        
+
 
     }
-    const handleFrom = (e)=>{
-        e.preventDefault()
-        const data = e.target
-        const name = data.name.value
-        const location = data.location.value
-        const details = data.details.value
-        const email = user?.email
-        const blogDetails = {name,location,details, email, hostImages}
-        console.log(blogDetails);
 
-    }
+    // const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+    // const persons = [
+    //     {
+    //         name : "Mahmud Hasan",
+    //         age : 25,
+    //         Gender : "Male"
+    //     },
+    //     {
+    //         name : "Mehadi Hasan",
+    //         age : 19,
+    //         Gender : "Male"
+    //     },
+    //     {
+    //         name : "Kamrul Ahasan",
+    //         age : 55,
+    //         Gender : "Male"
+    //     },
+    // ]
+
+    // const result = words.map((word) => word.length > 6);
+    // const result = persons.filter(e=> e.name.includes("Hasan"))
+    // console.log(result);
     return (
         <form onSubmit={handleFrom} className="border-2 p-5 space-y-3 bg-white rounded-2xl w-1/3 mx-auto">
             <div>

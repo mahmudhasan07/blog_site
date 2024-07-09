@@ -4,9 +4,20 @@ import Link from "next/link";
 import "./navbar.css";
 import { useContext } from "react";
 import { ContextSource } from "./ContextAPI/ContextAPI";
+import useAuth from "./auth/useAuth";
+import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 
 export default function NavBar() {
-    const {user} = useContext(ContextSource)
+    const { user } = useContext(ContextSource)
+    const navigate = useRouter()
+    // console.log(user);
+
+    const handleLogOut = () => {
+        const userDetails = useAuth.getCurrentUser()
+        userDetails.signOut()
+        navigate.push('/')
+    }
     // console.log(user);
     return (
         <section className="poetsen-one-regular text-white flex justify-around border-b-2 border-black bg-[#65248e]">
@@ -31,13 +42,13 @@ export default function NavBar() {
             </div>
             <div className="my-auto">
                 {
-                    user ?
-                    <div className="flex gap-3">
-                        <img src={user?.picture} className="w-12 h-12 rounded-full object-cover" alt="" />
-                        <Link href={'/'}><button id="button" className=" mt-1 text-base font-semibold">LogOut</button></Link>
-                    </div>
-                    :
-                    <Link href={'/auth'}><button id="button" className=" text-xl font-semibold">Login</button></Link>
+                    user?.email ?
+                        <div className="flex gap-3">
+                            <img src={user?.picture} className="w-12 h-12 rounded-full object-cover" alt="" />
+                            <Link href={'/'}><button onClick={handleLogOut} id="button" className=" mt-1 text-base font-semibold">LogOut</button></Link>
+                        </div>
+                        :
+                        <Link href={'/auth'}><button id="button" className=" text-xl font-semibold">Login</button></Link>
                 }
             </div>
         </section>
