@@ -18,11 +18,10 @@ const Blog = () => {
         e.preventDefault()
         const file = e.target.files
         const images = Array.from(file)
-        const preview = images.map(element => {
-            URL.createObjectURL(element)
-            setImageArray(images)
-        })
-
+        // console.log(images);
+        const preview = images.map(element => URL.createObjectURL(element))
+        setImageArray(images)
+        // console.log(URL.createObjectURL(images));
         setPreviewImage(data => data.concat(preview))
 
 
@@ -41,18 +40,18 @@ const Blog = () => {
             axios.post('https://api.cloudinary.com/v1_1/daudgshta/upload', fromData)
                 .then(res => {
                     console.log(res.data.url);
-                    sethostImages(e => e.concat(res.data.url))
-                    if (imageArray?.length === hostImages?.length) {
-                        const blogDetails = { name, location, details, email, hostImages }
-                        console.log(blogDetails);
-                        axiosLink.post("/blogs", blogDetails)
-                        .then(res=>{
-                            console.log(res.data);
-                        })
-                        .catch(err=>{
-                            console.log(err);
-                        })
-                    }
+                    sethostImages(e => e.concat(res?.data?.url))
+                    // if (imageArray?.length === hostImages?.length) {
+                    //     const blogDetails = { name, location, details, email, hostImages }
+                    //     console.log(blogDetails);
+                    //     axiosLink.post("/blogs", blogDetails)
+                    //     .then(res=>{
+                    //         console.log(res.data);
+                    //     })
+                    //     .catch(err=>{
+                    //         console.log(err);
+                    //     })
+                    // }
 
                 })
                 .catch(err => {
@@ -63,6 +62,8 @@ const Blog = () => {
 
     }
 
+
+    console.log(previewImage.length);
     // const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
     // const persons = [
     //     {

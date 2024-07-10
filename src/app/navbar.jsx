@@ -44,7 +44,7 @@ export default function NavBar() {
                 {
                     user?.email ?
                         <div className="flex gap-3">
-                            <img src={user?.picture} className="w-12 h-12 rounded-full object-cover" alt="" />
+                            <img src={user?.picture} className="w-12 h-12 rounded-full object-cover object-top" alt="" />
                             <Link href={'/'}><button onClick={handleLogOut} id="button" className=" mt-1 text-base font-semibold">LogOut</button></Link>
                         </div>
                         :
