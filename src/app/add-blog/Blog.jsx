@@ -41,17 +41,17 @@ const Blog = () => {
                 .then(res => {
                     console.log(res.data.url);
                     sethostImages(e => e.concat(res?.data?.url))
-                    // if (imageArray?.length === hostImages?.length) {
-                    //     const blogDetails = { name, location, details, email, hostImages }
-                    //     console.log(blogDetails);
-                    //     axiosLink.post("/blogs", blogDetails)
-                    //     .then(res=>{
-                    //         console.log(res.data);
-                    //     })
-                    //     .catch(err=>{
-                    //         console.log(err);
-                    //     })
-                    // }
+                    if (hostImages?.length == imageArray?.length) {
+                        const blogDetails = { name, location, details, email, hostImages }
+                        console.log(blogDetails);
+                        axiosLink.post("/blogs", blogDetails)
+                        .then(res=>{
+                            console.log(res.data);
+                        })
+                        .catch(err=>{
+                            console.log(err);
+                        })
+                    }
 
                 })
                 .catch(err => {
@@ -63,7 +63,7 @@ const Blog = () => {
     }
 
 
-    console.log(previewImage.length);
+    console.log(hostImages.length, imageArray.length);
     // const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
     // const persons = [
     //     {
