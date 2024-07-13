@@ -25,32 +25,27 @@ const ContextAPI = ({ children }) => {
         //         else {
         //             setUser([])
         //         }
-
-        const userFunction = async () => {
-            const userDetails =  useAuth?.getCurrentUser()
+       const findUser = setInterval(() => {
+            const userDetails = useAuth?.getCurrentUser()
             if (userDetails) {
                 userDetails?.getSession((err, res) => {
                     if (res) {
                         setUser(res?.idToken?.payload)
+                        clearInterval(findUser)
                         
-                    }
-                    else {
-                        console.log(err);
-                        setUser(err) 
-                        // console.log(res?.idToken?.payload);
-                    }
-                })
-            }
-            else {
-                setUser([])
-            }
-        }
 
-        userFunction()
+                    }
+                })}
+                else{
+                    return
+                }
+                }, 1000);
+
     }, []);
     // console.log(user);
     const data = { user }
-    return <ContextSource.Provider value={data}> {children} </ContextSource.Provider>
+    return <ContextSource.Provider value={data}>
+        {children} </ContextSource.Provider>
 };
 
 export default ContextAPI;

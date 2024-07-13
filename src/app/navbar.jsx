@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 export default function NavBar() {
     const { user } = useContext(ContextSource)
     const navigate = useRouter()
-    // console.log(user);
+    console.log(user);
 
     const handleLogOut = () => {
         const userDetails = useAuth.getCurrentUser()
