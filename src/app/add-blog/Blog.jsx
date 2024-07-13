@@ -10,7 +10,8 @@ const Blog = () => {
     const axiosLink = useAxios(AxiosSource)
     // console.log(user);
     const [previewImage, setPreviewImage] = useState([]);
-    const [hostImages, sethostImages] = useState([]);
+    // const [hostImages, sethostImages] = useState([]);
+    const hostImages = []
     const [imageArray, setImageArray] = useState([]);
 
 
@@ -33,24 +34,27 @@ const Blog = () => {
         const location = data.location.value
         const details = data.details.value
         const email = user?.email
-        imageArray.map(e => {
+        imageArray.map((e, idx) => {
             const fromData = new FormData()
             fromData.append("file", e)
             fromData.append("upload_preset", 'blog_images')
             axios.post('https://api.cloudinary.com/v1_1/daudgshta/upload', fromData)
                 .then(res => {
-                    console.log(res.data.url);
-                    sethostImages(e => e.concat(res?.data?.url))
+                    // console.log(res.data.url);
+                    hostImages.push(res?.data?.url)
+                    // sethostImages((e) => e.concat(res?.data?.url))
+                    // console.log(hostImages?.length);
                     if (hostImages?.length == imageArray?.length) {
+                        console.log(hostImages);
                         const blogDetails = { name, location, details, email, hostImages }
                         console.log(blogDetails);
                         axiosLink.post("/blogs", blogDetails)
-                        .then(res=>{
-                            console.log(res.data);
-                        })
-                        .catch(err=>{
-                            console.log(err);
-                        })
+                            .then(res => {
+                                console.log(res.data);
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            })
                     }
 
                 })
@@ -63,7 +67,7 @@ const Blog = () => {
     }
 
 
-    console.log(hostImages.length, imageArray.length);
+    // console.log(hostImages.length, imageArray.length);
     // const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
     // const persons = [
     //     {
