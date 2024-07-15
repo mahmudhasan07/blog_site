@@ -117,7 +117,7 @@ const Blog = () => {
             </div>
             <div>
                 <label className="text-lg font-semibold">Blog Description</label>
-                <textarea name='details' className="border-2 w-full border-black p-2 rounded-2xl " rows={'7'}></textarea>
+                <textarea name='details' className="border-2 w-full border-black p-2 rounded-2xl "  rows={'7'}></textarea>
             </div>
             <div className='mx-auto w-fit'>
                 <button id='button_Submit' className=' border-2 p-2 text-white mt-3 border-white text-lg rounded-2xl font-semibold'>Submit Your Blog</button>
