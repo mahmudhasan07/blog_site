@@ -51,6 +51,8 @@ const Blog = () => {
                         axiosLink.post("/blogs", blogDetails)
                             .then(res => {
                                 console.log(res.data);
+                                data.reset()
+                                setPreviewImage([])
                             })
                             .catch(err => {
                                 console.log(err);

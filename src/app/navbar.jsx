@@ -5,13 +5,18 @@ import "./navbar.css";
 import { useContext } from "react";
 import { ContextSource } from "./ContextAPI/ContextAPI";
 import useAuth from "./auth/useAuth";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 // import { useRouter } from "next/router";
 
 export default function NavBar() {
     const { user } = useContext(ContextSource)
     const navigate = useRouter()
-    console.log(user);
+    const path = usePathname()
+    // const  router = useRouter()
+    // console.log(user);
+
+    // const activeRoute = ({path})=> path == "/" ? "underline" : "";
 
     const handleLogOut = () => {
         const userDetails = useAuth.getCurrentUser()
@@ -26,18 +31,18 @@ export default function NavBar() {
             </div>
             <div className=" my-auto">
                 <ul className=" flex gap-8  text-xl ">
-                    <Link href={'/'}>
-                        <li>Home</li>
+                    <Link className={path == "/" ? "underline" : "" } href={'/'}>
+                        <li >Home</li>
                     </Link>
-                    <Link href={'/all-blogs'}>
+                    <Link className={({ isActive, isPending })=> isPending? "" : isActive? "underline" : ""} href={'/all-blogs'}>
                         <li>All Blogs</li>
                     </Link>
-                    <Link href={'/add-blog'}>
+                    <Link className={({ isActive, isPending })=> isPending? "" : isActive? "underline" : ""} href={'/add-blog'}>
                         <li>Add Blog</li>
                     </Link>
-                    <Link href={'/my-blogs'}>
+                    <Link className={({ isActive, isPending })=> isPending? "" : isActive? "underline" : ""} href={'/my-blogs'}>
                         <li>My Blog</li>
-                    </Link>
+                    </Link> 
                 </ul>
             </div>
             <div className="my-auto">
