@@ -12,11 +12,31 @@ import { usePathname, useRouter } from "next/navigation";
 export default function NavBar() {
     const { user } = useContext(ContextSource)
     const navigate = useRouter()
-    const path = usePathname()
+    const routePath = usePathname()
     // const  router = useRouter()
     // console.log(user);
 
     // const activeRoute = ({path})=> path == "/" ? "underline" : "";
+
+    const routes = [
+        {
+            name: "Home",
+            path : ""
+        },
+        {
+            name: "All Blogs",
+            path : "all-blogs"
+        },
+        {
+            name: "Add Blogs",
+            path : "add-blog"
+        },
+        {
+            name: "My Blogs",
+            path : "my-blogs"
+        },
+
+    ]
 
     const handleLogOut = () => {
         const userDetails = useAuth.getCurrentUser()
@@ -31,7 +51,7 @@ export default function NavBar() {
             </div>
             <div className=" my-auto">
                 <ul className=" flex gap-8  text-xl ">
-                    <Link className={path == "/" ? "underline" : "" } href={'/'}>
+                    {/* <Link className={path == "/" ? "underline" : "" } href={'/'}>
                         <li >Home</li>
                     </Link>
                     <Link className={({ isActive, isPending })=> isPending? "" : isActive? "underline" : ""} href={'/all-blogs'}>
@@ -42,7 +62,10 @@ export default function NavBar() {
                     </Link>
                     <Link className={({ isActive, isPending })=> isPending? "" : isActive? "underline" : ""} href={'/my-blogs'}>
                         <li>My Blog</li>
-                    </Link> 
+                    </Link>  */}
+                    {
+                        routes.map((e, idx)=> <Link key={idx} href={`/${e.path}`} className={routePath==`/${e.path}`? "underline" : ""}><li>{e.name}</li></Link>)
+                    }
                 </ul>
             </div>
             <div className="my-auto">
