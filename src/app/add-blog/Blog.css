@@ -5,3 +5,9 @@
 #button_Submit:hover{
     transform: scale(1.10);
 }
+
+#add_blog{
+    height: calc(100vh - 85px);
+    /* align-items: center; */
+    /* background-color: yellow; */
+}

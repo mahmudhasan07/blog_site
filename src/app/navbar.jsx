@@ -2,17 +2,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import "./navbar.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ContextSource } from "./ContextAPI/ContextAPI";
 import useAuth from "./auth/useAuth";
 // import { useRouter } from "next/router";
 import { usePathname, useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 // import { useRouter } from "next/router";
 
 export default function NavBar() {
     const { user } = useContext(ContextSource)
     const navigate = useRouter()
     const routePath = usePathname()
+    const [hoveredIndex, setHoveredIndex] = useState(null)
     // const  router = useRouter()
     // console.log(user);
 
@@ -21,19 +23,19 @@ export default function NavBar() {
     const routes = [
         {
             name: "Home",
-            path : ""
+            path: ""
         },
         {
             name: "All Blogs",
-            path : "all-blogs"
+            path: "all-blogs"
         },
         {
             name: "Add Blogs",
-            path : "add-blog"
+            path: "add-blog"
         },
         {
             name: "My Blogs",
-            path : "my-blogs"
+            path: "my-blogs"
         },
 
     ]
@@ -64,7 +66,26 @@ export default function NavBar() {
                         <li>My Blog</li>
                     </Link>  */}
                     {
-                        routes.map((e, idx)=> <Link key={idx} href={`/${e.path}`} className={routePath==`/${e.path}`? "underline" : ""}><li>{e.name}</li></Link>)
+                        routes.map((e, idx) => <Link  key={idx} href={`/${e.path}`} onMouseEnter={()=> setHoveredIndex(idx)} onMouseLeave={()=> setHoveredIndex(null)} className={routePath == `/${e.path}` ? "underline relative" : "relative" }>
+                            <li>{e.name}</li>
+                            <AnimatePresence>
+                                {hoveredIndex === idx && (
+                                    <motion.span
+                                        className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                                        layoutId="hoverBackground"
+                                        initial={{ opacity: 0 }}
+                                        animate={{
+                                            opacity: 1,
+                                            transition: { duration: 0.15 },
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                            transition: { duration: 0.15, delay: 0.2 },
+                                        }}
+                                    />
+                                )}
+                            </AnimatePresence>
+                            </Link>)
                     }
                 </ul>
             </div>
