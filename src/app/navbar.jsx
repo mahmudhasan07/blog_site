@@ -52,7 +52,8 @@ export default function NavBar() {
                 <Link href={'/'}><Image src={'https://i.ibb.co/f9g36Zz/exploresphere-high-resolution-logo-transparent-1.png'} width={200} height={10} className=" my-2 "></Image></Link>
             </div>
             <div className=" my-auto">
-                <ul className=" flex gap-8  text-xl ">
+                <ul className={`flex text-xl`}>  
+                {/* framer motion animation a gap dele card section kaj kore na */}
                     {/* <Link className={path == "/" ? "underline" : "" } href={'/'}>
                         <li >Home</li>
                     </Link>
@@ -67,7 +68,7 @@ export default function NavBar() {
                     </Link>  */}
                     {
                         routes.map((e, idx) => <Link  key={idx} href={`/${e.path}`} onMouseEnter={()=> setHoveredIndex(idx)} onMouseLeave={()=> setHoveredIndex(null)} className={routePath == `/${e.path}` ? "underline relative" : "relative" }>
-                            <li>{e.name}</li>
+                            
                             <AnimatePresence>
                                 {hoveredIndex === idx && (
                                     <motion.span
@@ -85,6 +86,7 @@ export default function NavBar() {
                                     />
                                 )}
                             </AnimatePresence>
+                            <li className="relative mx-2 my-1  z-50">{e.name}</li>
                             </Link>)
                     }
                 </ul>
