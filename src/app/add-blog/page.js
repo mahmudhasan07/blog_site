@@ -30,7 +30,7 @@ export default function AddBlog({ }) {
 
 
     return (
-        <section id="add_blog" className="bg-[#c0b2f3] relative border-4 w-full border-green-800 ">
+        <section id="add_blog" className="bg-[#c0b2f3] relative  ">
             <div className="my-auto ">
                 <h1 className="text-4xl font-bold text-center my-auto mb-3">Add Your Blog Post</h1>
                 <Blog ></Blog>
