@@ -26,7 +26,7 @@ const AllBlogs = () => {
                       <AnimatePresence>
                         {hoveredIndex === idx && (
                           <motion.span
-                            className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                            className="absolute inset-0 h-full w-full bg-[#e466a7] block  rounded-3xl"
                             layoutId="hoverBackground"
                             initial={{ opacity: 0 }}
                             animate={{
@@ -42,7 +42,7 @@ const AllBlogs = () => {
                       </AnimatePresence>
                       <div className='z-50 relative m-2'>
                         <img src={item?.hostImages[0]} className='h-72 object-cover w-full' alt="" />
-                        <h1>{item?.name}</h1>
+                        <h1 className={hoveredIndex === idx ? "text-white" : "text-black"}>{item?.name}</h1>
                         
                       </div>
                     </Link>

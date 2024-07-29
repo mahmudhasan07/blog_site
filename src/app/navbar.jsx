@@ -15,6 +15,7 @@ export default function NavBar() {
     const navigate = useRouter()
     const routePath = usePathname()
     const [hoveredIndex, setHoveredIndex] = useState(null)
+    const [hidden, sethidden] = useState("hidden");
     // const  router = useRouter()
     // console.log(user);
 
@@ -67,12 +68,12 @@ export default function NavBar() {
                         <li>My Blog</li>
                     </Link>  */}
                     {
-                        routes.map((e, idx) => <Link  key={idx} href={`/${e.path}`} onMouseEnter={()=> setHoveredIndex(idx)} onMouseLeave={()=> setHoveredIndex(null)} className={routePath == `/${e.path}` ? "underline relative" : "relative" }>
+                        routes.map((e, idx) => <Link  key={idx} href={`/${e.path}`} onMouseEnter={()=> setHoveredIndex(idx)} onMouseLeave={()=> setHoveredIndex(null)} className={routePath == `/${e.path}` ? `underline relative ` : `relative` }>
                             
                             <AnimatePresence>
                                 {hoveredIndex === idx && (
                                     <motion.span
-                                        className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                                        className="absolute inset-0 h-full w-full bg-[#e92f8f] block  rounded-3xl"
                                         layoutId="hoverBackground"
                                         initial={{ opacity: 0 }}
                                         animate={{
@@ -86,7 +87,10 @@ export default function NavBar() {
                                     />
                                 )}
                             </AnimatePresence>
-                            <li className="relative mx-2 my-1  z-50">{e.name}</li>
+                            <div className="relative mx-2 my-1  z-50" key={idx}>
+                            <li  className="">{e.name}</li>
+                            {/* <p  id="link_id">hello</p> */}
+                            </div>
                             </Link>)
                     }
                 </ul>

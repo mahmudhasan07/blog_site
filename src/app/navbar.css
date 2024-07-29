@@ -4,6 +4,12 @@
     font-style: normal;
   }
 
+  #link_id{
+    width: fit-content;
+    height: 2px;
+    border: 2px solid black;
+  }
+
 
   #button{
     border: 1px solid;
