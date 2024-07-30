@@ -5,45 +5,31 @@ import useAuth from '../auth/useAuth';
 export const ContextSource = createContext()
 const ContextAPI = ({ children }) => {
     const [user, setUser] = useState();
-    useEffect(() => {
-        // setInterval(() => {
+    const [loader, setloader] = useState(true)
 
-        // }, 800);
-        // const userDetails = useAuth?.getCurrentUser()
-        //         if (userDetails) {
-        //             userDetails?.getSession((err, res) => {
-        //                 if (err) {
-        //                     console.log(err);
-        //                     setUser(err)
-        //                 }
-        //                 else {
-        //                     setUser(res?.idToken?.payload)
-        //                     // console.log(res?.idToken?.payload);
-        //                 }
-        //             })
-        //         }
-        //         else {
-        //             setUser([])
-        //         }
-       const findUser = setInterval(() => {
+    
+    useEffect(() => {
+        console.log(loader);
+        if (loader == false) {
             const userDetails = useAuth?.getCurrentUser()
             if (userDetails) {
                 userDetails?.getSession((err, res) => {
                     if (res) {
                         setUser(res?.idToken?.payload)
-                        clearInterval(findUser)
-                        
+                        // clearInterval(findUser)
+
 
                     }
-                })}
-                else{
-                    return
-                }
-                }, 1000);
+                })
+            }
+        }
+        else {
+            setUser(null)
+        }
 
-    }, []);
+    }, [loader]);
     // console.log(user);
-    const data = { user }
+    const data = { user, loader, setloader }
     return <ContextSource.Provider value={data}>
         {children} </ContextSource.Provider>
 };

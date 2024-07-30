@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 // import { useRouter } from "next/router";
 
 export default function NavBar() {
-    const { user } = useContext(ContextSource)
+    const { user, setloader } = useContext(ContextSource)
     const navigate = useRouter()
     const routePath = usePathname()
     const [hoveredIndex, setHoveredIndex] = useState(null)
@@ -44,6 +44,7 @@ export default function NavBar() {
     const handleLogOut = () => {
         const userDetails = useAuth.getCurrentUser()
         userDetails.signOut()
+        setloader(true)
         navigate.push('/')
     }
     // console.log(user);
