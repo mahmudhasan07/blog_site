@@ -7,15 +7,13 @@ import { FcGoogle } from "react-icons/fc";
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import useAuth from './useAuth';
 import { useRouter } from 'next/navigation';
+import Lottie from 'lottie-react';
+import loader from "../../../public/loader-2.json"
 
 
 export const metadata = {
     title: "LogIn"
 }
-
-
-
-
 
 const Login = () => {
     const navigate = useRouter()
@@ -62,6 +60,10 @@ const Login = () => {
     user.signOut()
     }
     return (
+        <section className=''>
+            {/* <div className='absolute left-1/3 top-1/4 z-50 backdrop-blur-md '>
+                <Lottie animationData={loader} className='w-96'></Lottie>
+            </div> */}
         <div id='login-from' className='border-2 rounded-2xl backdrop-blur-sm backdrop-brightness-90 w-1/3 h-[510px] p-2 my-auto absolute left-1/3 top-14'>
             <h1 className='text-3xl font-bold text-center my-5'>Please Login in your account</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-2 '>
@@ -96,6 +98,7 @@ const Login = () => {
             </div>
 
         </div>
+        </section>
     );
 };
 

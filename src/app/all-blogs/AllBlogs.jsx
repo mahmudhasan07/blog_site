@@ -10,23 +10,23 @@ const AllBlogs = () => {
     const [hoveredIndex, setHoveredIndex] = useState()
     console.log(data);
     return (
-        <section className='grid grid-cols-1 md:grid-cols-2 mx-2 lg:grid-cols-3'>
+        <section  className='grid lg:grid-cols-4 mx-2'>
             {
                 data == "l"?
                 "loading"
                 :
                 data?.map((item, idx) => (
-                    <Link
-                    href={`/${idx}`}
+                    <div
+                    // href={`/${idx}`}
                       key={idx}
-                      className="relative group  block p-2 h-full w-full"
+                      className="relative p-2 h-full w-full  rounded-2xl"
                       onMouseEnter={() => setHoveredIndex(idx)}
                       onMouseLeave={() => setHoveredIndex(null)}
                     >
                       <AnimatePresence>
                         {hoveredIndex === idx && (
                           <motion.span
-                            className="absolute inset-0 h-full w-full bg-[#e466a7] block  rounded-3xl"
+                            className="absolute inset-0 h-full w-full bg-[#ed84ba] block  rounded-2xl"
                             layoutId="hoverBackground"
                             initial={{ opacity: 0 }}
                             animate={{
@@ -40,12 +40,12 @@ const AllBlogs = () => {
                           />
                         )}
                       </AnimatePresence>
-                      <div className='z-50 relative m-2'>
+                      <div className={hoveredIndex === idx ? "text-white z-50 relative border-2 p-2 rounded-2xl " : "text-black p-2 z-50 relative rounded-2xl border-gray-300 border-2"}>
                         <img src={item?.hostImages[0]} className='h-72 object-cover w-full' alt="" />
-                        <h1 className={hoveredIndex === idx ? "text-white" : "text-black"}>{item?.name}</h1>
+                        <h1 className={'text-2xl '}>{item?.name}</h1>
                         
                       </div>
-                    </Link>
+                    </div>
                   ))
             }
         </section>

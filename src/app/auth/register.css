@@ -5,6 +5,10 @@
     transition: all 1s;
 }
 
+#bgImg{
+    height: calc(100vh - 80px);
+}
+
 #login-from {
     transform: rotateY(0deg);
     /* transform: perspective('3d'); */
