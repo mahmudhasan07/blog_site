@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import useFetch1 from '../Hooks/useFetch1';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const AllBlogs = () => {
 
     const [data] = useFetch1("blogs")
     const [hoveredIndex, setHoveredIndex] = useState()
+    const route = useRouter()
     console.log(data);
     return (
         <section  className='grid lg:grid-cols-4 mx-2'>
@@ -40,9 +42,11 @@ const AllBlogs = () => {
                           />
                         )}
                       </AnimatePresence>
-                      <div className={hoveredIndex === idx ? "text-white z-50 relative border-2 p-2 rounded-2xl " : "text-black p-2 z-50 relative rounded-2xl border-gray-300 border-2"}>
+                      <div onClick={()=>route.push(`/all-blogs/${item._id}`)} className={hoveredIndex === idx ? "text-white z-50 relative border-2 p-2 rounded-2xl " : "text-black p-2 z-50 relative rounded-2xl border-gray-300 border-2"}>
                         <img src={item?.hostImages[0]} className='h-72 object-cover w-full' alt="" />
-                        <h1 className={'text-2xl '}>{item?.name}</h1>
+                        <h1 className={'text-2xl '}> <b>Name:</b> {item?.name}</h1>
+                        <h1 className={'text-2xl '}> <b>Location:</b> {item?.location}</h1>
+
                         
                       </div>
                     </div>

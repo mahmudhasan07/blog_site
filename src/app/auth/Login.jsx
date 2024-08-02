@@ -83,12 +83,12 @@ const Login = () => {
                     {/* register your input into the hook by invoking the "register" function */}
                     <div className=' w-8/12 mx-auto'>
                         <label className='font-semibold text-lg'>Your Email</label> <br />
-                        <input className='border-2 w-80 border-black p-1 rounded-xl' defaultValue="" {...register("email")} />
+                        <input className='border-2 w-80 border-black p-1 rounded-xl' type='text' defaultValue="" {...register("email")} />
                     </div>
                     <div className=' w-8/12 mx-auto'>
                         <label className='font-semibold text-lg'>Your Captcha</label> <br />
                         <LoadCanvasTemplate></LoadCanvasTemplate>
-                        <input className='border-2 w-80 border-black p-1 rounded-xl' defaultValue="" {...register("code")} />
+                        <input className='border-2 w-80 border-black p-1 rounded-xl' type='text' defaultValue="" {...register("code")} />
                     </div>
 
                     {/* include validation with required or other standard HTML validation rules */}

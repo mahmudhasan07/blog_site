@@ -5,7 +5,7 @@ import useAuth from '../auth/useAuth';
 export const ContextSource = createContext()
 const ContextAPI = ({ children }) => {
     const [user, setUser] = useState();
-    const [loader, setloader] = useState(true)
+    const [loader, setloader] = useState(false)
 
     
     useEffect(() => {
@@ -25,6 +25,7 @@ const ContextAPI = ({ children }) => {
         }
         else {
             setUser(null)
+            return
         }
 
     }, [loader]);
