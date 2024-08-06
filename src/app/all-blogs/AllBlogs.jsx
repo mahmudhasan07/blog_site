@@ -21,7 +21,7 @@ const AllBlogs = () => {
                     <div
                     // href={`/${idx}`}
                       key={idx}
-                      className="relative p-2 h-full w-full  rounded-2xl"
+                      className="relative p-2 h-full w-full cursor-pointer  rounded-2xl"
                       onMouseEnter={() => setHoveredIndex(idx)}
                       onMouseLeave={() => setHoveredIndex(null)}
                     >

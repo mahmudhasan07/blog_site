@@ -1,6 +1,6 @@
 'use client'
 import useFetch2 from '@/app/Hooks/useFetch2';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import Swiper from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,15 +8,43 @@ import 'swiper/css/pagination';
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './Card.css'
-import { FcLike } from "react-icons/fc";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import useAxios, { AxiosSource } from '@/app/Hooks/useAxios';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const CardDetails = ({ params }) => {
-    console.log(params);
+    
+    const [like, setLike] = useState(true);
+    const [count, setCount] = useState(10)
+    const [data, refetch] = useFetch2("blogs", params?.card)
+    const axiosLink = useAxios(AxiosSource)
+    
+    const handlebutton = ()=>{
+        setLike(!like)
+        console.log(like);
+        
+        if(like == true){
+            setCount(count + 1)
+        axiosLink.patch(`/blogs/${params.card}`, {count})
+        .then(res=>{
+            console.log();
+            
+        })
+        .catch(err=>{
+            console.log(err);
+            
+        })
 
-    const [data, refetch] = useFetch2("blogs", params?.card, "")
-    console.log(data);
+        }
+        if(like == false){
+            setCount(count-1)
+        }
+    }
 
+console.log(count);
 
     return (
         <section>
@@ -47,7 +75,9 @@ const CardDetails = ({ params }) => {
                         <div className='border-2 w-1/3 my-auto space-y-2 h-fit'>
                                 <h1 id='card_title' className='text-4xl font-bold '>{data?.name}</h1>
                                 <h1 id='card_title' className='text-2xl font-semibold'>Location : {data?.location}</h1>
-                                <h1 className='text-xl font-semibold flex my-auto gap-3'>Likes:<FcLike className=' rounded-full border-2 text-3xl my-auto'></FcLike></h1>
+                                <h1 className='text-xl font-bold'>Reviews: </h1>
+                                <h1 className='text-xl font-bold flex gap-3'>Likes: <button onClick={handlebutton}>{like == false ? <p className='h-full text-2xl -mt-3 -ml-1'>❤️</p> : <FontAwesomeIcon className='font-extrabold text-2xl' icon={faHeart} size='fa-solid'  /> }</button> {count}</h1>
+                                
                                 
                                 
                             </div>
